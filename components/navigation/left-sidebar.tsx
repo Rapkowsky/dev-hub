@@ -2,8 +2,9 @@ import React from "react";
 import ROUTES from "@/constants/routes";
 import Link from "next/link";
 import Image from "next/image";
-import NavLinks from "./nav-links";
+
 import { Button } from "@/components/ui/button";
+import NavLinks from "./navbar/nav-links";
 
 const LeftSidebar = () => {
     return (
