@@ -15,7 +15,7 @@ const SocialAuthForm = () => {
         try {
             await signIn(provider, {
                 callbackUrl: ROUTES.HOME,
-                redirect: false,
+                redirect: true,
             });
         } catch (error) {
             console.log(error);
