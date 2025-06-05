@@ -17,9 +17,10 @@ import {
     FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import { askQuestionSchema } from "@/lib/validations";
+
 import TagCard from "../cards/tag-card";
 import { z } from "zod";
+import { AskQuestionSchema } from "@/lib/validations";
 
 const Editor = dynamic(() => import("@/components/editor"), {
     ssr: false,
@@ -28,8 +29,8 @@ const Editor = dynamic(() => import("@/components/editor"), {
 const QuestionForm = () => {
     const editorRef = useRef<MDXEditorMethods>(null);
 
-    const form = useForm<z.infer<typeof askQuestionSchema>>({
-        resolver: zodResolver(askQuestionSchema),
+    const form = useForm<z.infer<typeof AskQuestionSchema>>({
+        resolver: zodResolver(AskQuestionSchema),
         defaultValues: {
             title: "",
             content: "",
@@ -79,7 +80,7 @@ const QuestionForm = () => {
         }
     };
 
-    const handleCreateQuestion = (data: z.infer<typeof askQuestionSchema>) => {
+    const handleCreateQuestion = (data: z.infer<typeof AskQuestionSchema>) => {
         console.log(data);
     };
 
