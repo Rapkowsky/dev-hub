@@ -2,10 +2,18 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MDXEditorMethods } from "@mdxeditor/editor";
+import { ReloadIcon } from "@radix-ui/react-icons";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 import React, { useRef, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { ReloadIcon } from "@radix-ui/react-icons";
+import { z } from "zod";
+
+import ROUTES from "@/constants/routes";
+
+import { createQuestion, editQuestion } from "@/lib/actions/question.action";
+import { AskQuestionSchema } from "@/lib/validations";
+
 import { Button } from "../ui/button";
 import {
     Form,
@@ -17,21 +25,19 @@ import {
     FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-
-import TagCard from "../cards/tag-card";
-import { z } from "zod";
-import { AskQuestionSchema } from "@/lib/validations";
-import { createQuestion } from "@/lib/actions/question.action";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import ROUTES from "@/constants/routes";
-import router from "next/router";
+import TagCard from "../cards/tag-card";
 
 const Editor = dynamic(() => import("@/components/editor"), {
     ssr: false,
 });
 
-const QuestionForm = () => {
+interface Params {
+    question?: Question;
+    isEdit?: boolean;
+}
+
+const QuestionForm = ({ question, isEdit = false }: Params) => {
     const router = useRouter();
     const editorRef = useRef<MDXEditorMethods>(null);
     const [isPending, startTransition] = useTransition();
@@ -39,9 +45,9 @@ const QuestionForm = () => {
     const form = useForm<z.infer<typeof AskQuestionSchema>>({
         resolver: zodResolver(AskQuestionSchema),
         defaultValues: {
-            title: "",
-            content: "",
-            tags: [],
+            title: question?.title || "",
+            content: question?.content || "",
+            tags: question?.tags.map((tag) => tag.name) || [],
         },
     });
 
@@ -49,6 +55,7 @@ const QuestionForm = () => {
         e: React.KeyboardEvent<HTMLInputElement>,
         field: { value: string[] },
     ) => {
+        console.log(field, e);
         if (e.key === "Enter") {
             e.preventDefault();
             const tagInput = e.currentTarget.value.trim();
@@ -77,6 +84,7 @@ const QuestionForm = () => {
 
     const handleTagRemove = (tag: string, field: { value: string[] }) => {
         const newTags = field.value.filter((t) => t !== tag);
+
         form.setValue("tags", newTags);
 
         if (newTags.length === 0) {
@@ -91,18 +99,41 @@ const QuestionForm = () => {
         data: z.infer<typeof AskQuestionSchema>,
     ) => {
         startTransition(async () => {
+            if (isEdit && question) {
+                const result = await editQuestion({
+                    questionId: question?._id,
+                    ...data,
+                });
+
+                if (result.success) {
+                    toast.success("Success", {
+                        description: "Question updated successfully",
+                    });
+
+                    if (result.data)
+                        router.push(ROUTES.QUESTION(result.data._id));
+                } else {
+                    toast.success(`Error ${result.status}`, {
+                        description:
+                            result.error?.message || "Something went wrong",
+                    });
+                }
+
+                return;
+            }
+
             const result = await createQuestion(data);
 
             if (result.success) {
                 toast.success("Success", {
-                    description: "Question created successfully",
+                    description: "Question updated successfully",
                 });
 
                 if (result.data) router.push(ROUTES.QUESTION(result.data._id));
             } else {
-                toast.error("Error", {
+                toast.success(`Error ${result.status}`, {
                     description:
-                        result.error?.message || "Failed to create question",
+                        result.error?.message || "Something went wrong",
                 });
             }
         });
@@ -174,9 +205,9 @@ const QuestionForm = () => {
                                     <Input
                                         className="paragraph-regular background-light700_dark300 light-border-2 text-dark300_light700 no-focus min-h-[56px] border"
                                         placeholder="Add tags..."
-                                        onKeyDown={(e) => {
-                                            handleInputKeyDown(e, field);
-                                        }}
+                                        onKeyDown={(e) =>
+                                            handleInputKeyDown(e, field)
+                                        }
                                     />
                                     {field.value.length > 0 && (
                                         <div className="flex-start mt-2.5 flex-wrap gap-2.5">
@@ -223,7 +254,7 @@ const QuestionForm = () => {
                                 <span>Submitting</span>
                             </>
                         ) : (
-                            <>Ask A Question</>
+                            <>{isEdit ? "Edit" : "Ask a Question"}</>
                         )}
                     </Button>
                 </div>
