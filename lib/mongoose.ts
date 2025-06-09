@@ -1,6 +1,7 @@
 import mongoose, { Mongoose } from "mongoose";
 
 import logger from "./logger";
+import "@/database";
 
 const MONGODB_URI = process.env.MONGODB_URI as string;
 
@@ -33,7 +34,7 @@ const dbConnect = async (): Promise<Mongoose> => {
     if (!cached.promise) {
         cached.promise = mongoose
             .connect(MONGODB_URI, {
-                dbName: "devhub",
+                dbName: "devflow",
             })
             .then((result) => {
                 logger.info("Connected to MongoDB");
