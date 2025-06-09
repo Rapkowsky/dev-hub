@@ -1,12 +1,12 @@
 import Link from "next/link";
 
-
-
-
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
 import { getQuestions } from "@/lib/actions/question.action";
+
+import { EMPTY_QUESTION } from "@/constants/states";
 import QuestionCard from "@/components/cards/question-card";
+import DataRenderer from "@/components/data-render";
 import HomeFilter from "@/components/filters/home-filter";
 import LocalSearch from "@/components/search/local-search";
 
@@ -47,30 +47,23 @@ const Home = async ({ searchParams }: SearchParams) => {
                 />
             </section>
             <HomeFilter />
-            {success ? (
-                <div className="mt-10 flex w-full flex-col gap-6">
-                    {questions && questions.length > 0 ? (
-                        questions.map((question) => (
+
+            <DataRenderer
+                success={success}
+                error={error}
+                data={questions}
+                empty={EMPTY_QUESTION}
+                render={(questions) => (
+                    <div className="mt-10 flex w-full flex-col gap-6">
+                        {questions.map((question) => (
                             <QuestionCard
                                 key={question._id}
                                 question={question}
                             />
-                        ))
-                    ) : (
-                        <div className="mt-10 flex w-full items-center justify-center">
-                            <p className="text-dark400_light700">
-                                No questions found
-                            </p>
-                        </div>
-                    )}
-                </div>
-            ) : (
-                <div className="mt-10 flex w-full items-center justify-center">
-                    <p className="text-dark400_light700">
-                        {error?.message || "Failed to fetch questions"}
-                    </p>
-                </div>
-            )}
+                        ))}
+                    </div>
+                )}
+            />
         </>
     );
 };
