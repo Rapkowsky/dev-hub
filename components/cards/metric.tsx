@@ -46,7 +46,7 @@ const Metric = ({
     );
 
     return href ? (
-        <Link href={href} className="flex-center gap-2">
+        <Link href={href} className="flex-center gap-1">
             {metricContent}
         </Link>
     ) : (
