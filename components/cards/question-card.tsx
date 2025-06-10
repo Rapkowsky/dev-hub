@@ -3,7 +3,7 @@ import React from "react";
 
 import ROUTES from "@/constants/routes";
 import { getTimeStamp } from "@/lib/utils";
-import Metric from "./metric";
+import Metric from "../metric";
 import TagCard from "./tag-card";
 
 interface Props {
