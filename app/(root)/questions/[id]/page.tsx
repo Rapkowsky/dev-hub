@@ -1,15 +1,17 @@
-import ROUTES from "@/constants/routes";
-import { getQuestion, incrementViews } from "@/lib/actions/question.action";
-import { formatNumber, getTimeStamp } from "@/lib/utils";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { after } from "next/server";
 import React from "react";
+
+import ROUTES from "@/constants/routes";
+import { getAnswers } from "@/lib/actions/answer.action";
+import { getQuestion, incrementViews } from "@/lib/actions/question.action";
+import { formatNumber, getTimeStamp } from "@/lib/utils";
 import TagCard from "@/components/cards/tag-card";
 import { Preview } from "@/components/editor/preview";
+import AnswerForm from "@/components/forms/answer-form";
 import Metric from "@/components/metric";
 import UserAvatar from "@/components/user-avatar";
-import { after } from "next/server";
-import AnswerForm from "@/components/forms/answer-form";
 
 const QuestionDetails = async ({ params }: RouteParams) => {
     const { id } = await params;
@@ -20,6 +22,19 @@ const QuestionDetails = async ({ params }: RouteParams) => {
     });
 
     if (!success || !question) return redirect("/404");
+
+    const {
+        success: areAnswersLoaded,
+        data: answersResult,
+        error: answersError,
+    } = await getAnswers({
+        questionId: id,
+        page: 1,
+        pageSize: 10,
+        filter: "latest",
+    });
+
+    console.log("ANSWERS", answersResult);
 
     const { author, createdAt, answers, views, tags, content, title } =
         question;
@@ -90,7 +105,6 @@ const QuestionDetails = async ({ params }: RouteParams) => {
             </div>
 
             <section className="my-5">
-                Add commentMore actions
                 <AnswerForm questionId={question._id} />
             </section>
         </>

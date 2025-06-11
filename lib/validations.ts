@@ -129,9 +129,11 @@ export const SignInWithOAuthSchema = z.object({
         .min(1, { message: "Provider Account ID is required." }),
     user: z.object({
         name: z.string().min(1, { message: "Name is required." }),
-        username: z.string().min(3, {
-            message: "Username must be at least 3 characters long.",
-        }),
+        username: z
+            .string()
+            .min(3, {
+                message: "Username must be at least 3 characters long.",
+            }),
         email: z
             .string()
             .email({ message: "Please provide a valid email address." }),
@@ -170,5 +172,9 @@ export const AnswerSchema = z.object({
 });
 
 export const AnswerServerSchema = AnswerSchema.extend({
+    questionId: z.string().min(1, { message: "Question ID is required." }),
+});
+
+export const GetAnswersSchema = PaginatedSearchParamsSchema.extend({
     questionId: z.string().min(1, { message: "Question ID is required." }),
 });
