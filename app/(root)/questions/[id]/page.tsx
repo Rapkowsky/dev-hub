@@ -4,12 +4,12 @@ import { formatNumber, getTimeStamp } from "@/lib/utils";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
-import View from "../view";
 import TagCard from "@/components/cards/tag-card";
 import { Preview } from "@/components/editor/preview";
 import Metric from "@/components/metric";
 import UserAvatar from "@/components/user-avatar";
 import { after } from "next/server";
+import AnswerForm from "@/components/forms/answer-form";
 
 const QuestionDetails = async ({ params }: RouteParams) => {
     const { id } = await params;
@@ -88,6 +88,11 @@ const QuestionDetails = async ({ params }: RouteParams) => {
                     />
                 ))}
             </div>
+
+            <section className="my-5">
+                Add commentMore actions
+                <AnswerForm />
+            </section>
         </>
     );
 };
