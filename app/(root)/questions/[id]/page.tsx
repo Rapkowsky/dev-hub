@@ -1,14 +1,14 @@
-import TagCard from "@/components/cards/tag-card";
-import { Preview } from "@/components/editor/preview";
-import Metric from "@/components/metric";
-import UserAvatar from "@/components/user-avatar";
 import ROUTES from "@/constants/routes";
 import { getQuestion } from "@/lib/actions/question.action";
 import { formatNumber, getTimeStamp } from "@/lib/utils";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-
 import React from "react";
+import View from "../view";
+import TagCard from "@/components/cards/tag-card";
+import { Preview } from "@/components/editor/preview";
+import Metric from "@/components/metric";
+import UserAvatar from "@/components/user-avatar";
 
 const QuestionDetails = async ({ params }: RouteParams) => {
     const { id } = await params;
@@ -21,6 +21,8 @@ const QuestionDetails = async ({ params }: RouteParams) => {
 
     return (
         <>
+            <View questionId={id} />
+
             <div className="flex-start w-full flex-col">
                 <div className="flex w-full flex-col-reverse justify-between">
                     <div className="flex items-center justify-start gap-1">
