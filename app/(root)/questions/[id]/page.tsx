@@ -91,7 +91,7 @@ const QuestionDetails = async ({ params }: RouteParams) => {
 
             <section className="my-5">
                 Add commentMore actions
-                <AnswerForm />
+                <AnswerForm questionId={question._id} />
             </section>
         </>
     );
