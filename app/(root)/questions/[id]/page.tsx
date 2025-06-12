@@ -9,11 +9,10 @@ import { getQuestion, incrementViews } from "@/lib/actions/question.action";
 import { formatNumber, getTimeStamp } from "@/lib/utils";
 import AllAnswers from "@/components/answers/all-answers";
 import TagCard from "@/components/cards/tag-card";
-
+import { Preview } from "@/components/editor/preview";
 import AnswerForm from "@/components/forms/answer-form";
 import Metric from "@/components/metric";
 import UserAvatar from "@/components/user-avatar";
-import { Preview } from "@/components/editor/preview";
 
 const QuestionDetails = async ({ params }: RouteParams) => {
     const { id } = await params;
@@ -114,7 +113,11 @@ const QuestionDetails = async ({ params }: RouteParams) => {
             </section>
 
             <section className="my-5">
-                <AnswerForm questionId={question._id} />
+                <AnswerForm
+                    questionId={question._id}
+                    questionTitle={question.title}
+                    questionContent={question.content}
+                />
             </section>
         </>
     );

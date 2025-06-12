@@ -113,7 +113,7 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
                     if (result.data)
                         router.push(ROUTES.QUESTION(result.data._id));
                 } else {
-                    toast.success(`Error ${result.status}`, {
+                    toast.error(`Error ${result.status}`, {
                         description:
                             result.error?.message || "Something went wrong",
                     });
@@ -131,7 +131,7 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
 
                 if (result.data) router.push(ROUTES.QUESTION(result.data._id));
             } else {
-                toast.success(`Error ${result.status}`, {
+                toast.error(`Error ${result.status}`, {
                     description:
                         result.error?.message || "Something went wrong",
                 });
