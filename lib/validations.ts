@@ -129,9 +129,11 @@ export const SignInWithOAuthSchema = z.object({
         .min(1, { message: "Provider Account ID is required." }),
     user: z.object({
         name: z.string().min(1, { message: "Name is required." }),
-        username: z.string().min(3, {
-            message: "Username must be at least 3 characters long.",
-        }),
+        username: z
+            .string()
+            .min(3, {
+                message: "Username must be at least 3 characters long.",
+            }),
         email: z
             .string()
             .email({ message: "Please provide a valid email address." }),
@@ -186,4 +188,16 @@ export const AIAnswerSchema = z.object({
         .string()
         .min(100, { message: "Answer has to have more than 100 characters." }),
     userAnswer: z.string().optional(),
+});
+
+export const CreateVoteSchema = z.object({
+    targetId: z.string().min(1, { message: "Target ID is required." }),
+    targetType: z.enum(["question", "answer"], {
+        message: "Invalid target type.",
+    }),
+    voteType: z.enum(["upvote", "downvote"], { message: "Invalid vote type." }),
+});
+
+export const UpdateVoteCountSchema = CreateVoteSchema.extend({
+    change: z.number().int().min(-1).max(1),
 });
