@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { after } from "next/server";
-import React from "react";
+import React, { Suspense } from "react";
 
 import ROUTES from "@/constants/routes";
 import { getAnswers } from "@/lib/actions/answer.action";
 import { getQuestion, incrementViews } from "@/lib/actions/question.action";
+import { hasVoted } from "@/lib/actions/vote.action";
 import { formatNumber, getTimeStamp } from "@/lib/utils";
 import AllAnswers from "@/components/answers/all-answers";
 import TagCard from "@/components/cards/tag-card";
@@ -13,6 +14,7 @@ import { Preview } from "@/components/editor/preview";
 import AnswerForm from "@/components/forms/answer-form";
 import Metric from "@/components/metric";
 import UserAvatar from "@/components/user-avatar";
+import Votes from "@/components/votes/votes";
 
 const QuestionDetails = async ({ params }: RouteParams) => {
     const { id } = await params;
@@ -33,6 +35,11 @@ const QuestionDetails = async ({ params }: RouteParams) => {
         page: 1,
         pageSize: 10,
         filter: "latest",
+    });
+
+    const hasVotedPromise = hasVoted({
+        targetId: question._id,
+        targetType: "question",
     });
 
     const { author, createdAt, answers, views, tags, content, title } =
@@ -57,12 +64,15 @@ const QuestionDetails = async ({ params }: RouteParams) => {
                     </div>
 
                     <div className="flex justify-end">
-                        <Votes
-                            upvotes={question.upvotes}
-                            hasupVoted={true}
-                            downvotes={question.downvotes}
-                            hasdownVoted={false}
-                        />
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <Votes
+                                targetType="question"
+                                upvotes={question.upvotes}
+                                downvotes={question.downvotes}
+                                targetId={question._id}
+                                hasVotedPromise={hasVotedPromise}
+                            />
+                        </Suspense>
                     </div>
                 </div>
 
