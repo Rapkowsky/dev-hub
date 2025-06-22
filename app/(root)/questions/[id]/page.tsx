@@ -5,6 +5,7 @@ import React, { Suspense } from "react";
 
 import ROUTES from "@/constants/routes";
 import { getAnswers } from "@/lib/actions/answer.action";
+import { hasSavedQuestion } from "@/lib/actions/collection.action";
 import { getQuestion, incrementViews } from "@/lib/actions/question.action";
 import { hasVoted } from "@/lib/actions/vote.action";
 import { formatNumber, getTimeStamp } from "@/lib/utils";
@@ -13,9 +14,9 @@ import TagCard from "@/components/cards/tag-card";
 import { Preview } from "@/components/editor/preview";
 import AnswerForm from "@/components/forms/answer-form";
 import Metric from "@/components/metric";
+import SaveQuestion from "@/components/questions/save-question";
 import UserAvatar from "@/components/user-avatar";
 import Votes from "@/components/votes/votes";
-import SaveQuestion from "@/components/questions/save-question";
 
 const QuestionDetails = async ({ params }: RouteParams) => {
     const { id } = await params;
@@ -43,6 +44,10 @@ const QuestionDetails = async ({ params }: RouteParams) => {
         targetType: "question",
     });
 
+    const hasSavedQuestionPromise = hasSavedQuestion({
+        questionId: question._id,
+    });
+
     const { author, createdAt, answers, views, tags, content, title } =
         question;
 
@@ -64,7 +69,7 @@ const QuestionDetails = async ({ params }: RouteParams) => {
                         </Link>
                     </div>
 
-                    <div className="flex justify-end">
+                    <div className="flex items-center justify-end gap-4">
                         <Suspense fallback={<div>Loading...</div>}>
                             <Votes
                                 targetType="question"
@@ -76,7 +81,12 @@ const QuestionDetails = async ({ params }: RouteParams) => {
                         </Suspense>
 
                         <Suspense fallback={<div>Loading...</div>}>
-                            <SaveQuestion questionId={question._id} />
+                            <SaveQuestion
+                                questionId={question._id}
+                                hasSavedQuestionPromise={
+                                    hasSavedQuestionPromise
+                                }
+                            />
                         </Suspense>
                     </div>
                 </div>
