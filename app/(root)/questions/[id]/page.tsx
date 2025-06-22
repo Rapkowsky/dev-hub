@@ -15,6 +15,7 @@ import AnswerForm from "@/components/forms/answer-form";
 import Metric from "@/components/metric";
 import UserAvatar from "@/components/user-avatar";
 import Votes from "@/components/votes/votes";
+import SaveQuestion from "@/components/questions/save-question";
 
 const QuestionDetails = async ({ params }: RouteParams) => {
     const { id } = await params;
@@ -72,6 +73,10 @@ const QuestionDetails = async ({ params }: RouteParams) => {
                                 targetId={question._id}
                                 hasVotedPromise={hasVotedPromise}
                             />
+                        </Suspense>
+
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <SaveQuestion questionId={question._id} />
                         </Suspense>
                     </div>
                 </div>
