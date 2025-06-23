@@ -9,6 +9,7 @@ import QuestionCard from "@/components/cards/question-card";
 import DataRenderer from "@/components/data-render";
 import CommonFilter from "@/components/filters/common-filter";
 import HomeFilter from "@/components/filters/home-filter";
+import Pagination from "@/components/pagination";
 import LocalSearch from "@/components/search/local-search";
 
 interface SearchParams {
@@ -25,7 +26,7 @@ const Home = async ({ searchParams }: SearchParams) => {
         filter: filter || "",
     });
 
-    const { questions } = data || {};
+    const { questions, isNext } = data || {};
 
     return (
         <>
@@ -71,6 +72,8 @@ const Home = async ({ searchParams }: SearchParams) => {
                     </div>
                 )}
             />
+
+            <Pagination page={page} isNext={isNext || false} />
         </>
     );
 };
