@@ -1,132 +1,113 @@
-import { FilterQuery } from "mongoose";
+"use server";
+
+import bcrypt from "bcryptjs";
+import mongoose from "mongoose";
+
+import { signIn } from "@/auth";
+import Account from "@/database/account.model";
+import User from "@/database/user.model";
+
 import action from "../handlers/action";
 import handleError from "../handlers/error";
-import {
-    GetTagQuestionsSchema,
-    PaginatedSearchParamsSchema,
-} from "../validations";
-import { Question, Tag } from "@/database";
+import { NotFoundError } from "../http-errors";
+import { SignInSchema, SignUpSchema } from "../validations";
 
-export const getTags = async (
-    params: PaginatedSearchParams,
-): Promise<ActionResponse<{ tags: Tag[]; isNext: boolean }>> => {
-    const validationResult = await action({
-        params,
-        schema: PaginatedSearchParamsSchema,
-    });
+export async function signUpWithCredentials(
+    params: AuthCredentials,
+): Promise<ActionResponse> {
+    const validationResult = await action({ params, schema: SignUpSchema });
 
     if (validationResult instanceof Error) {
         return handleError(validationResult) as ErrorResponse;
     }
 
-    const { page = 1, pageSize = 10, query, filter } = params;
+    const { name, username, email, password } = validationResult.params!;
 
-    const skip = (Number(page) - 1) * pageSize;
-    const limit = Number(pageSize);
-
-    const filterQuery: FilterQuery<typeof Tag> = {};
-
-    if (query) {
-        filterQuery.$or = [{ name: { $regex: query, $options: "i" } }];
-    }
-
-    let sortCriteria = {};
-
-    switch (filter) {
-        case "popular":
-            sortCriteria = { questions: -1 };
-            break;
-        case "recent":
-            sortCriteria = { createdAt: -1 };
-            break;
-        case "oldest":
-            sortCriteria = { createdAt: 1 };
-            break;
-        case "name":
-            sortCriteria = { name: 1 };
-            break;
-        default:
-            sortCriteria = { questions: -1 };
-            break;
-    }
+    const session = await mongoose.startSession();
+    session.startTransaction();
 
     try {
-        const totalTags = await Tag.countDocuments(filterQuery);
+        const existingUser = await User.findOne({ email }).session(session);
 
-        const tags = await Tag.find(filterQuery)
-            .sort(sortCriteria)
-            .skip(skip)
-            .limit(limit);
-
-        const isNext = totalTags > skip + tags.length;
-
-        return {
-            success: true,
-            data: {
-                tags: JSON.parse(JSON.stringify(tags)),
-                isNext,
-            },
-        };
-    } catch (error) {
-        return handleError(error) as ErrorResponse;
-    }
-};
-
-export const getTagQuestions = async (
-    params: GetTagQuestionsParams,
-): Promise<
-    ActionResponse<{ tag: Tag; questions: Question[]; isNext: boolean }>
-> => {
-    const validationResult = await action({
-        params,
-        schema: GetTagQuestionsSchema,
-    });
-
-    if (validationResult instanceof Error) {
-        return handleError(validationResult) as ErrorResponse;
-    }
-
-    const { tagId, page = 1, pageSize = 10, query } = params;
-
-    const skip = (Number(page) - 1) * pageSize;
-    const limit = Number(pageSize);
-
-    try {
-        const tag = await Tag.findById(tagId);
-        if (!tag) throw new Error("Tag not found");
-
-        const filterQuery: FilterQuery<typeof Question> = {
-            tags: { $in: [tagId] },
-        };
-
-        if (query) {
-            filterQuery.title = { $regex: query, $options: "i" };
+        if (existingUser) {
+            throw new Error("User already exists");
         }
 
-        const totalQuestions = await Question.countDocuments(filterQuery);
+        const existingUsername = await User.findOne({ username }).session(
+            session,
+        );
 
-        const questions = await Question.find(filterQuery)
-            .select(
-                "_id title views answers upvotes downvotes author createdAt",
-            )
-            .populate([
-                { path: "author", select: "name image" },
-                { path: "tags", select: "name" },
-            ])
-            .skip(skip)
-            .limit(limit);
+        if (existingUsername) {
+            throw new Error("Username already exists");
+        }
 
-        const isNext = totalQuestions > skip + questions.length;
+        const hashedPassword = await bcrypt.hash(password, 12);
 
-        return {
-            success: true,
-            data: {
-                tag: JSON.parse(JSON.stringify(tag)),
-                questions: JSON.parse(JSON.stringify(questions)),
-                isNext,
-            },
-        };
+        const [newUser] = await User.create([{ username, name, email }], {
+            session,
+        });
+
+        await Account.create(
+            [
+                {
+                    userId: newUser._id,
+                    name,
+                    provider: "credentials",
+                    providerAccountId: email,
+                    password: hashedPassword,
+                },
+            ],
+            { session },
+        );
+
+        await session.commitTransaction();
+
+        await signIn("credentials", { email, password, redirect: false });
+
+        return { success: true };
+    } catch (error) {
+        await session.abortTransaction();
+
+        return handleError(error) as ErrorResponse;
+    } finally {
+        await session.endSession();
+    }
+}
+
+export async function signInWithCredentials(
+    params: Pick<AuthCredentials, "email" | "password">,
+): Promise<ActionResponse> {
+    const validationResult = await action({ params, schema: SignInSchema });
+
+    if (validationResult instanceof Error) {
+        return handleError(validationResult) as ErrorResponse;
+    }
+
+    const { email, password } = validationResult.params!;
+
+    try {
+        const existingUser = await User.findOne({ email });
+
+        if (!existingUser) throw new NotFoundError("User");
+
+        const existingAccount = await Account.findOne({
+            provider: "credentials",
+            providerAccountId: email,
+        });
+
+        if (!existingAccount) throw new NotFoundError("Account");
+
+        const passwordMatch = await bcrypt.compare(
+            password,
+            existingAccount.password,
+        );
+
+        if (!passwordMatch) throw new Error("Password does not match");
+
+        await signIn("credentials", { email, password, redirect: false });
+
+        return { success: true };
     } catch (error) {
         return handleError(error) as ErrorResponse;
     }
-};
+}
