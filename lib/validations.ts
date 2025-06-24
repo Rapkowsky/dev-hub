@@ -129,11 +129,9 @@ export const SignInWithOAuthSchema = z.object({
         .min(1, { message: "Provider Account ID is required." }),
     user: z.object({
         name: z.string().min(1, { message: "Name is required." }),
-        username: z
-            .string()
-            .min(3, {
-                message: "Username must be at least 3 characters long.",
-            }),
+        username: z.string().min(3, {
+            message: "Username must be at least 3 characters long.",
+        }),
         email: z
             .string()
             .email({ message: "Please provide a valid email address." }),
@@ -225,4 +223,8 @@ export const GetUsersAnswersSchema = PaginatedSearchParamsSchema.extend({
 
 export const GetUsersTagsSchema = z.object({
     userId: z.string().min(1, { message: "User ID is required." }),
+});
+
+export const DeleteQuestionSchema = z.object({
+    questionId: z.string().min(1, "Question ID is required"),
 });
