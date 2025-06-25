@@ -2,13 +2,13 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { after } from "next/server";
 import React, { Suspense } from "react";
-
 import ROUTES from "@/constants/routes";
 import { getAnswers } from "@/lib/actions/answer.action";
 import { hasSavedQuestion } from "@/lib/actions/collection.action";
 import { getQuestion, incrementViews } from "@/lib/actions/question.action";
 import { hasVoted } from "@/lib/actions/vote.action";
 import { formatNumber, getTimeStamp } from "@/lib/utils";
+import { Metadata } from "next";
 import AllAnswers from "@/components/answers/all-answers";
 import TagCard from "@/components/cards/tag-card";
 import { Preview } from "@/components/editor/preview";
@@ -17,6 +17,31 @@ import Metric from "@/components/metric";
 import SaveQuestion from "@/components/questions/save-question";
 import UserAvatar from "@/components/user-avatar";
 import Votes from "@/components/votes/votes";
+
+export async function generateMetadata({
+    params,
+}: RouteParams): Promise<Metadata> {
+    const { id } = await params;
+
+    const { success, data: question } = await getQuestion({ questionId: id });
+
+    if (!success || !question) {
+        return {
+            title: "Question not found",
+            description: "This question does not exist.",
+        };
+    }
+
+    return {
+        title: question.title,
+        description: question.content.slice(0, 100),
+        twitter: {
+            card: "summary_large_image",
+            title: question.title,
+            description: question.content.slice(0, 100),
+        },
+    };
+}
 
 const QuestionDetails = async ({ params, searchParams }: RouteParams) => {
     const { id } = await params;
@@ -60,6 +85,7 @@ const QuestionDetails = async ({ params, searchParams }: RouteParams) => {
                         <UserAvatar
                             id={author._id}
                             name={author.name}
+                            imageUrl={author.image}
                             className="size-[22px]"
                             fallbackClassName="text-[10px]"
                         />
