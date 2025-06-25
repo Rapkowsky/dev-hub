@@ -19,9 +19,9 @@ const spaceGrotesk = localFont({
 });
 
 export const metadata: Metadata = {
-    title: "DevHub",
+    title: "DevHub – StackOverflow Clone Built with Next.js",
     description:
-        "A community-driven platform for asking and answering programming questions. Get help, share knowledge, and collaborate with developers from around the world. Explore topics in web development, mobile app development, algorithms, data structures, and more.",
+        "DevHub is a modern Q&A platform for developers, inspired by StackOverflow and built with Next.js. Ask questions, share answers, and collaborate with devs worldwide in a fast, responsive interface.",
     icons: {
         icon: "/images/site-logo.svg",
     },
