@@ -22,9 +22,62 @@ export const metadata: Metadata = {
     title: "DevHub – StackOverflow Clone Built with Next.js",
     description:
         "DevHub is a modern Q&A platform for developers, inspired by StackOverflow and built with Next.js. Ask questions, share answers, and collaborate with devs worldwide in a fast, responsive interface.",
-    icons: {
-        icon: "/images/site-logo.svg",
+    generator: "Next.js",
+    applicationName: "DevHub",
+    referrer: "origin-when-cross-origin",
+
+    keywords: [
+        "DevHub",
+        "programming questions",
+        "developer Q&A",
+        "web development",
+        "JavaScript",
+        "React",
+        "Node.js",
+        "algorithms",
+        "data structures",
+        "developer community",
+    ],
+
+    authors: [{ name: "Robert" }],
+    creator: "Robert",
+    publisher: "DevHub",
+
+    formatDetection: {
+        email: false,
+        address: false,
+        telephone: false,
     },
+
+    robots: {
+        index: true,
+        follow: true,
+        nocache: false,
+        googleBot: {
+            index: true,
+            follow: true,
+            noimageindex: false,
+            "max-video-preview": -1,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+        },
+    },
+
+    icons: {
+        icon: "/images/site-logo.svg", // regular favicon
+        shortcut: "/favicon.ico", // browser address bar icon
+        apple: "/apple-touch-icon.png", // Apple devices
+        other: [
+            {
+                rel: "mask-icon",
+                url: "/safari-pinned-tab.svg",
+                color: "#5bbad5",
+            },
+        ],
+    },
+
+    // Optional: Theme color for browser UI and mobile experience
+    themeColor: "#18181b",
 };
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
