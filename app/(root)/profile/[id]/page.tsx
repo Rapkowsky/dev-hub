@@ -21,7 +21,7 @@ import DataRenderer from "@/components/data-render";
 import Pagination from "@/components/pagination";
 import UserAvatar from "@/components/user-avatar";
 import ProfileLink from "@/components/user/profile-link";
-import Stats from "@/components/user/stats";
+import Stats from "@/components/user/Stats";
 
 const ProfilePage = async ({ params, searchParams }: RouteParams) => {
     const { id } = await params;

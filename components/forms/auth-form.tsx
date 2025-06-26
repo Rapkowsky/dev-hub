@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
     DefaultValues,
     FieldValues,
@@ -23,7 +24,6 @@ import {
 import { Input } from "@/components/ui/input";
 import ROUTES from "@/constants/routes";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 
 interface AuthFormProps<T extends FieldValues> {
     schema: ZodType<T>;
@@ -39,6 +39,7 @@ const AuthForm = <T extends FieldValues>({
     onSubmit,
 }: AuthFormProps<T>) => {
     const router = useRouter();
+
     const form = useForm<z.infer<typeof schema>>({
         resolver: zodResolver(schema),
         defaultValues: defaultValues as DefaultValues<T>,
@@ -56,7 +57,7 @@ const AuthForm = <T extends FieldValues>({
             });
             router.push(ROUTES.HOME);
         } else {
-            toast.error(`Error ${result?.status}`, {
+            toast.error(`Error`, {
                 description: result?.error?.message,
             });
         }
@@ -114,7 +115,7 @@ const AuthForm = <T extends FieldValues>({
 
                 {formType === "SIGN_IN" ? (
                     <p>
-                        Don't have an account?{" "}
+                        Don&apos;t have an account?{" "}
                         <Link
                             href={ROUTES.SIGN_UP}
                             className="paragraph-semibold primary-text-gradient"

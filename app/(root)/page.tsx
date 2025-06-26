@@ -13,7 +13,7 @@ import Pagination from "@/components/pagination";
 import LocalSearch from "@/components/search/local-search";
 
 export const metadata: Metadata = {
-    title: "DevHub| Home",
+    title: "DevHub | Home",
     description:
         "Discover different programming questions and answers with recommendations from the community.",
 };
