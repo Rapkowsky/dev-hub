@@ -75,9 +75,6 @@ export const metadata: Metadata = {
             },
         ],
     },
-
-    // Optional: Theme color for browser UI and mobile experience
-    themeColor: "#18181b",
 };
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
