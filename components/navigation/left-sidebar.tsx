@@ -28,10 +28,10 @@ const LeftSidebar = async () => {
                     >
                         <Button
                             type="submit"
-                            className="base-medium w-fit !bg-transparent px-4 py-3"
+                            className="group base-medium click-anim w-fit !bg-transparent px-4 py-3"
                         >
                             <LogOut className="size-5 text-black dark:text-white" />
-                            <span className="text-dark300_light900 max-lg:hidden">
+                            <span className="text-dark300_light900 group-hover:text-primary-500! duration-300 max-lg:hidden">
                                 Logout
                             </span>
                         </Button>
@@ -39,7 +39,7 @@ const LeftSidebar = async () => {
                 ) : (
                     <>
                         <Button
-                            className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none"
+                            className="small-medium btn-secondary hover-text click-anim min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none"
                             asChild
                         >
                             <Link href={ROUTES.SIGN_IN}>
@@ -57,7 +57,7 @@ const LeftSidebar = async () => {
                         </Button>
 
                         <Button
-                            className="small-medium light-border-2 btn-tertiary text-dark400_light900 min-h-[41px] w-full rounded-lg border px-4 py-3 shadow-none"
+                            className="small-medium light-border-2 btn-tertiary text-dark400_light900 hover-text click-anim min-h-[41px] w-full rounded-lg border px-4 py-3 shadow-none"
                             asChild
                         >
                             <Link href={ROUTES.SIGN_UP}>
