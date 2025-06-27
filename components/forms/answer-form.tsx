@@ -179,7 +179,7 @@ const AnswerForm = ({ questionId, questionTitle, questionContent }: Props) => {
                     <div className="flex justify-end">
                         <Button
                             type="submit"
-                            className="primary-gradient w-fit"
+                            className="primary-gradient w-fit text-white"
                         >
                             {isAnswering ? (
                                 <>

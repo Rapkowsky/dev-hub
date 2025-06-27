@@ -101,7 +101,13 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
                     >
                         {children}
                     </ThemeProvider>
-                    <Toaster />
+                    <Toaster
+                        toastOptions={{
+                            classNames: {
+                                description: "dark:text-gray-400!",
+                            },
+                        }}
+                    />
                 </body>
             </SessionProvider>
         </html>
