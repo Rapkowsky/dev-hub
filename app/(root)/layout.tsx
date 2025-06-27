@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
-import Navbar from "@/components/navigation/navbar";
 import LeftSidebar from "@/components/navigation/left-sidebar";
+import Navbar from "@/components/navigation/navbar";
 import RightSidebar from "@/components/navigation/right-sidebar";
 
 const RootLayout = ({ children }: { children: ReactNode }) => {

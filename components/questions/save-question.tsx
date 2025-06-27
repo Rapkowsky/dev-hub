@@ -3,9 +3,9 @@
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { use, useState } from "react";
+import { toast } from "sonner";
 
 import { toggleSaveQuestion } from "@/lib/actions/collection.action";
-import { toast } from "sonner";
 
 const SaveQuestion = ({
     questionId,
@@ -52,7 +52,6 @@ const SaveQuestion = ({
             setIsLoading(false);
         }
     };
-
 
     return (
         <Image

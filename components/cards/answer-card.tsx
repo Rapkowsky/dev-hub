@@ -4,9 +4,10 @@ import { Suspense } from "react";
 import ROUTES from "@/constants/routes";
 import { hasVoted } from "@/lib/actions/vote.action";
 import { cn, getTimeStamp } from "@/lib/utils";
+
 import { Preview } from "../editor/preview";
-import UserAvatar from "../user-avatar";
 import EditDeleteAction from "../user/edit-delete-action";
+import UserAvatar from "../user-avatar";
 import Votes from "../votes/votes";
 
 interface Props extends Answer {

@@ -1,16 +1,17 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { HomePageFilters } from "@/constants/filters";
-import ROUTES from "@/constants/routes";
-import { EMPTY_QUESTION } from "@/constants/states";
-import { getQuestions } from "@/lib/actions/question.action";
+
 import QuestionCard from "@/components/cards/question-card";
 import DataRenderer from "@/components/data-render";
 import CommonFilter from "@/components/filters/common-filter";
 import HomeFilter from "@/components/filters/home-filter";
 import Pagination from "@/components/pagination";
 import LocalSearch from "@/components/search/local-search";
+import { Button } from "@/components/ui/button";
+import { HomePageFilters } from "@/constants/filters";
+import ROUTES from "@/constants/routes";
+import { EMPTY_QUESTION } from "@/constants/states";
+import { getQuestions } from "@/lib/actions/question.action";
 
 export const metadata: Metadata = {
     title: "DevHub | Home",

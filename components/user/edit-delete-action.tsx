@@ -1,5 +1,9 @@
 "use client";
 
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+
 import {
     AlertDialog,
     AlertDialogAction,
@@ -13,10 +17,6 @@ import {
 } from "@/components/ui/alert-dialog";
 import { deleteAnswer } from "@/lib/actions/answer.action";
 import { deleteQuestion } from "@/lib/actions/question.action";
-
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
 
 interface Props {
     type: string;

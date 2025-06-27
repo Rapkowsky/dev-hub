@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import ROUTES from "@/constants/routes";
+
 import UserAvatar from "../user-avatar";
 
 const UserCard = ({ _id, name, image, username }: User) => (

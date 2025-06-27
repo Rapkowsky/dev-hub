@@ -3,9 +3,10 @@ import React from "react";
 
 import ROUTES from "@/constants/routes";
 import { getTimeStamp } from "@/lib/utils";
+
 import Metric from "../metric";
-import EditDeleteAction from "../user/edit-delete-action";
 import TagCard from "./tag-card";
+import EditDeleteAction from "../user/edit-delete-action";
 
 interface Props {
     question: Question;

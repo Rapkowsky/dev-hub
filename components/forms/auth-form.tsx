@@ -10,6 +10,7 @@ import {
     SubmitHandler,
     useForm,
 } from "react-hook-form";
+import { toast } from "sonner";
 import { z, ZodType } from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -23,7 +24,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import ROUTES from "@/constants/routes";
-import { toast } from "sonner";
 
 interface AuthFormProps<T extends FieldValues> {
     schema: ZodType<T>;

@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { globalSearch } from "@/lib/actions/general.action";
+
 import GlobalFilter from "./filters/global-filter";
 
 const GlobalResult = () => {

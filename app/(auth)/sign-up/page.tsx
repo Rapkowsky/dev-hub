@@ -2,9 +2,9 @@
 
 import React from "react";
 
-import { SignUpSchema } from "@/lib/validations";
 import AuthForm from "@/components/forms/auth-form";
 import { signUpWithCredentials } from "@/lib/actions/auth.action";
+import { SignUpSchema } from "@/lib/validations";
 
 const SignUp = () => {
     return (

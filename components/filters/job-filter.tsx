@@ -12,6 +12,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { formUrlQuery } from "@/lib/url";
+
 import LocalSearch from "../search/local-search";
 
 interface JobsFilterProps {
