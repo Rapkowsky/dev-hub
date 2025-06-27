@@ -345,7 +345,7 @@
 }
 
 @utility click-anim {
-    @apply active:scale-95;
+    @apply !duration-300 active:scale-95;
 }
 
 @layer base {

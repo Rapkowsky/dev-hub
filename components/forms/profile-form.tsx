@@ -178,7 +178,7 @@ const ProfileForm = ({ user }: Params) => {
                 <div className="mt-7 flex justify-end">
                     <Button
                         type="submit"
-                        className="primary-gradient w-fit"
+                        className="primary-gradient click-anim w-fit text-white"
                         disabled={isPending}
                     >
                         {isPending ? (
