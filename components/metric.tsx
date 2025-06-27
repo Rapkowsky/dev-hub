@@ -1,9 +1,8 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
-interface Props {
+type MetricProps = {
     imgUrl: string;
     alt: string;
     value: string | number;
@@ -13,7 +12,7 @@ interface Props {
     imgStyles?: string;
     isAuthor?: boolean;
     titleStyles?: string;
-}
+};
 
 const Metric = ({
     imgUrl,
@@ -25,16 +24,29 @@ const Metric = ({
     imgStyles,
     isAuthor,
     titleStyles,
-}: Props) => {
+}: MetricProps) => {
+    const getFirstLetter = (value: string | number): string => {
+        const stringValue = value.toString();
+        return stringValue.charAt(0).toUpperCase();
+    };
+
     const metricContent = (
         <>
-            <Image
-                src={imgUrl}
-                width={16}
-                height={16}
-                alt={alt}
-                className={`rounded-full object-contain ${imgStyles}`}
-            />
+            {imgUrl && (
+                <Image
+                    src={imgUrl}
+                    width={18}
+                    height={18}
+                    alt={alt}
+                    className={`rounded-full object-contain ${imgStyles ?? ""}`}
+                />
+            )}
+
+            {!imgUrl && isAuthor && (
+                <span className="primary-gradient font-space-grotesk flex size-4.5 items-center justify-center rounded-full text-xs font-semibold text-white">
+                    {getFirstLetter(value)}
+                </span>
+            )}
 
             <p className={`${textStyles} flex items-center gap-1`}>
                 {value}
