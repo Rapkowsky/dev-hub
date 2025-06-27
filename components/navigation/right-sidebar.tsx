@@ -32,7 +32,7 @@ const RightSidebar = async () => {
                                 <Link
                                     key={_id}
                                     href={ROUTES.QUESTION(_id)}
-                                    className="flex cursor-pointer items-center justify-between gap-7"
+                                    className="click-anim flex cursor-pointer items-center justify-between gap-7"
                                 >
                                     <Image
                                         src={
