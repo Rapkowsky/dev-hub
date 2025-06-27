@@ -6,6 +6,7 @@ import { useState, useRef, useEffect } from "react";
 import { Input } from "../ui/input";
 import Image from "next/image";
 import GlobalResult from "../global-result";
+import { cn } from "@/lib/utils";
 
 const GlobalSearch = () => {
     const router = useRouter();
@@ -67,7 +68,12 @@ const GlobalSearch = () => {
             className="relative w-full max-w-[600px] max-lg:hidden"
             ref={searchContainerRef}
         >
-            <div className="background-light800_darkgradient relative flex min-h-[56px] grow items-center gap-1 rounded-xl px-4 dark:bg-black">
+            <div
+                className={cn(
+                    "dark:bg-black!",
+                    "background-light800_darkgradient relative flex min-h-[56px] grow items-center gap-1 rounded-xl px-4",
+                )}
+            >
                 <Image
                     src="/icons/search.svg"
                     alt="search"

@@ -28,12 +28,22 @@ const RightSidebar = async () => {
                     error={error}
                     render={(hotQuestions) => (
                         <div className="mt-7 flex w-full flex-col gap-[30px]">
-                            {hotQuestions.map(({ _id, title }) => (
+                            {hotQuestions.map(({ _id, title }, index) => (
                                 <Link
                                     key={_id}
                                     href={ROUTES.QUESTION(_id)}
                                     className="flex cursor-pointer items-center justify-between gap-7"
                                 >
+                                    <Image
+                                        src={
+                                            (index & 1) === 0
+                                                ? "/icons/question-primary.svg"
+                                                : "/icons/question-accent.svg"
+                                        }
+                                        alt="Question"
+                                        width={20}
+                                        height={20}
+                                    />
                                     <p className="body-medium text-dark500_light700 line-clamp-2">
                                         {title}
                                     </p>
