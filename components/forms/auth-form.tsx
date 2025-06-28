@@ -65,6 +65,17 @@ const AuthForm = <T extends FieldValues>({
 
     const buttonText = formType === "SIGN_IN" ? "Sign In" : "Sign Up";
 
+    const getPlaceholder = (fieldName: string): string => {
+        switch (fieldName) {
+            case "email":
+                return "E-mail";
+            case "password":
+                return "********";
+            default:
+                return fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
+        }
+    };
+
     return (
         <Form {...form}>
             <form
@@ -78,7 +89,7 @@ const AuthForm = <T extends FieldValues>({
                         name={field as Path<T>}
                         render={({ field }) => (
                             <FormItem className="flex w-full flex-col gap-2.5">
-                                <FormLabel className="paragraph-medium text-dark400_light700">
+                                <FormLabel className="paragraph-medium text-dark400_light700 w-fit">
                                     {field.name === "email"
                                         ? "Email Address"
                                         : field.name.charAt(0).toUpperCase() +
@@ -86,7 +97,6 @@ const AuthForm = <T extends FieldValues>({
                                 </FormLabel>
                                 <FormControl>
                                     <Input
-                                        required
                                         type={
                                             field.name === "password"
                                                 ? "password"
@@ -94,6 +104,7 @@ const AuthForm = <T extends FieldValues>({
                                         }
                                         {...field}
                                         className="paragraph-regular background-light900_dark300 light-border-2 text-dark300_light700 no-focus rounded-1.5 min-h-12 border"
+                                        placeholder={getPlaceholder(field.name)}
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -118,7 +129,7 @@ const AuthForm = <T extends FieldValues>({
                         Don&apos;t have an account?{" "}
                         <Link
                             href={ROUTES.SIGN_UP}
-                            className="paragraph-semibold primary-text-gradient"
+                            className="paragraph-semibold primary-text-gradient link-underline-effect"
                         >
                             Sign up
                         </Link>
@@ -128,7 +139,7 @@ const AuthForm = <T extends FieldValues>({
                         Already have an account?{" "}
                         <Link
                             href={ROUTES.SIGN_IN}
-                            className="paragraph-semibold primary-text-gradient"
+                            className="paragraph-semibold primary-text-gradient link-underline-effect"
                         >
                             Sign in
                         </Link>
