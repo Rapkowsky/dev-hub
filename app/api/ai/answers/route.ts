@@ -4,6 +4,8 @@ import { NextResponse } from "next/server";
 import handleError from "@/lib/handlers/error";
 import { ValidationError } from "@/lib/http-errors";
 import { AIAnswerSchema } from "@/lib/validations";
+export const maxDuration = 5;
+export const runtime = "edge";
 
 const ai = new GoogleGenAI({});
 
