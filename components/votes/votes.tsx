@@ -3,10 +3,10 @@
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { use, useState } from "react";
+import { toast } from "sonner";
 
 import { createVote } from "@/lib/actions/vote.action";
 import { formatNumber } from "@/lib/utils";
-import { toast } from "sonner";
 
 interface Params {
     targetType: "question" | "answer";

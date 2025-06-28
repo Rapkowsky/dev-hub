@@ -3,9 +3,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { auth } from "@/auth";
-
+import AnswerCard from "@/components/cards/answer-card";
+import QuestionCard from "@/components/cards/question-card";
+import TagCard from "@/components/cards/tag-card";
+import DataRenderer from "@/components/data-render";
+import Pagination from "@/components/pagination";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ProfileLink from "@/components/user/profile-link";
+import Stats from "@/components/user/stats";
+import UserAvatar from "@/components/user-avatar";
 import { EMPTY_ANSWERS, EMPTY_QUESTION, EMPTY_TAGS } from "@/constants/states";
 import {
     getUser,
@@ -14,14 +21,6 @@ import {
     getUserStats,
     getUserTopTags,
 } from "@/lib/actions/user.action";
-import AnswerCard from "@/components/cards/answer-card";
-import QuestionCard from "@/components/cards/question-card";
-import TagCard from "@/components/cards/tag-card";
-import DataRenderer from "@/components/data-render";
-import Pagination from "@/components/pagination";
-import UserAvatar from "@/components/user-avatar";
-import ProfileLink from "@/components/user/profile-link";
-import Stats from "@/components/user/stats";
 
 const ProfilePage = async ({ params, searchParams }: RouteParams) => {
     const { id } = await params;

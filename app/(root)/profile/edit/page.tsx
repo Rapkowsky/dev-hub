@@ -1,8 +1,9 @@
 import { redirect } from "next/navigation";
+
 import { auth } from "@/auth";
+import ProfileForm from "@/components/forms/profile-form";
 import ROUTES from "@/constants/routes";
 import { getUser } from "@/lib/actions/user.action";
-import ProfileForm from "@/components/forms/profile-form";
 
 const Page = async () => {
     const session = await auth();

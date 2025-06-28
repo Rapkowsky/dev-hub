@@ -1,9 +1,11 @@
-import ROUTES from "@/constants/routes";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+
+import ROUTES from "@/constants/routes";
 import { getHotQuestions } from "@/lib/actions/question.action";
 import { getTopTags } from "@/lib/actions/tag.actions";
+
 import TagCard from "../cards/tag-card";
 import DataRenderer from "../data-render";
 
