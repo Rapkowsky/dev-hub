@@ -262,6 +262,10 @@
     @apply shadow-light-100 dark:shadow-none;
 }
 
+@utility link-underline-effect {
+    @apply after:bg-primary-500 relative m-0 cursor-pointer after:absolute after:left-1/2 after:mt-[2px] after:block after:h-[1px] after:w-0 after:translate-x-[-50%] after:duration-300 hover:after:w-full;
+}
+
 @utility primary-gradient {
     background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%);
 }
