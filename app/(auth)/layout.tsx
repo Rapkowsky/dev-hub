@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ReactNode } from "react";
 
 import SocialAuthForm from "@/components/forms/social-auth-form";
@@ -16,13 +17,16 @@ const AuthLayout = ({ children }: { children: ReactNode }) => {
                             To get your questions answered
                         </p>
                     </div>
-                    <Image
-                        src="images/site-logo.svg"
-                        alt="DevHub Logo"
-                        width={50}
-                        height={50}
-                        className="object-contain"
-                    />
+                    <Link href={"/"} className="click-anim group relative z-10">
+                        <Image
+                            src="images/site-logo.svg"
+                            alt="DevHub Logo"
+                            width={50}
+                            height={50}
+                            className="object-contain"
+                        />
+                        <div className="from-primary-500 to-primary-100 absolute inset-0 z-[1] bg-gradient-to-r opacity-0 blur-2xl duration-500 group-hover:opacity-30"></div>
+                    </Link>
                 </div>
 
                 {children}
