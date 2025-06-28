@@ -7,7 +7,12 @@ import { AIAnswerSchema } from "@/lib/validations";
 export const maxDuration = 5;
 export const runtime = "edge";
 
-const ai = new GoogleGenAI({});
+const apiKey = process.env.GEMINI_API_KEY;
+if (!apiKey) {
+    throw new Error("An API Key must be set when running in a browser");
+}
+
+const ai = new GoogleGenAI({ apiKey });
 
 export async function POST(req: Request) {
     const { question, content, userAnswer } = await req.json();
