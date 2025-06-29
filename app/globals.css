@@ -187,15 +187,15 @@
 }
 
 @utility base-medium {
-    @apply text-[16px] xs:text-[18px] leading-[25.2px] font-medium;
+    @apply xs:text-[18px] text-[16px] leading-[25.2px] font-medium;
 }
 
 @utility base-semibold {
-    @apply text-[16px] xs:text-[18px] leading-[25.2px] font-semibold;
+    @apply xs:text-[18px] text-[16px] leading-[25.2px] font-semibold;
 }
 
 @utility base-bold {
-    @apply text-[16px] xs:text-[18px] leading-[140%] font-bold;
+    @apply xs:text-[18px] text-[16px] leading-[140%] font-bold;
 }
 
 @utility paragraph-regular {
@@ -395,6 +395,8 @@
     margin-top: -140px;
     padding-bottom: 140px;
     display: block;
+    z-index: -100;
+    position: relative;
 }
 
 .mdxeditor-toolbar {
