@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ReloadIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -117,11 +118,16 @@ const AuthForm = <T extends FieldValues>({
                     disabled={form.formState.isSubmitting}
                     className="primary-gradient paragraph-medium rounded-2 font-inter !text-light-900 min-h-12 w-full px-4 py-3"
                 >
-                    {form.formState.isSubmitting
-                        ? buttonText === "Sign In"
-                            ? "Signin In..."
-                            : "Signing Up..."
-                        : buttonText}
+                    {form.formState.isSubmitting ? (
+                        <>
+                            <ReloadIcon className="mr-2.5 size-5 animate-spin" />
+                            {buttonText === "Sign In"
+                                ? "Signing In..."
+                                : "Signing Up..."}
+                        </>
+                    ) : (
+                        <>{buttonText}</>
+                    )}
                 </Button>
 
                 {formType === "SIGN_IN" ? (
