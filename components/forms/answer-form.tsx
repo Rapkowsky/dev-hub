@@ -130,7 +130,7 @@ const AnswerForm = ({ questionId, questionTitle, questionContent }: Props) => {
                     Write your answer here
                 </h4>
                 <Button
-                    className="btn light-border-2 text-primary-500 dark:text-primary-500 gap-1.5 rounded-md border px-4 py-2.5 shadow-none"
+                    className="w-fit btn light-border-2 text-primary-500 dark:text-primary-500 min-h-[40px] gap-1.5 rounded-md border px-4 py-2.5 shadow-none"
                     disabled={isAISubmitting}
                     onClick={generateAIAnswer}
                 >
