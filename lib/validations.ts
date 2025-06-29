@@ -60,7 +60,7 @@ export const AskQuestionSchema = z.object({
             message: "Title must be at least 5 characters.",
         })
         .max(130, { message: "Title musn't be longer then 130 characters." }),
-    content: z.string().min(100, { message: "Minimum of 100 characters." }),
+    content: z.string().min(100, { message: "Content must have minimum of 100 characters." }),
     tags: z
         .array(
             z
@@ -144,7 +144,7 @@ export const IncrementViewsSchema = z.object({
 });
 
 export const AnswerSchema = z.object({
-    content: z.string().min(100, { message: "Minimum of 100 characters." }),
+    content: z.string().min(100, { message: "Answer must have minimum of 100 characters." }),
 });
 
 export const AnswerServerSchema = AnswerSchema.extend({
