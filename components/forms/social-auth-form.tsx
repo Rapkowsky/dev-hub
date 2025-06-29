@@ -25,6 +25,13 @@ const SocialAuthForm = () => {
             await signIn(provider, {
                 callbackUrl: ROUTES.HOME,
             });
+
+            toast.success("Success", {
+                description:
+                    provider === "github"
+                        ? "Signed in successfully with GitHub"
+                        : "Signed up successfully with Google",
+            });
         } catch (error) {
             console.log(error);
             setLoadingProvider(null);
