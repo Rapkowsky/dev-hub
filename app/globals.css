@@ -42,7 +42,7 @@
     --background-image-auth-dark: url("/images/auth-dark.png");
     --background-image-auth-light: url("/images/auth-light.png");
 
-    --breakpoint-xs: 420px;
+    --breakpoint-xs: 500px;
 
     --font-inter: var(--font-inter);
     --font-space-grotesk: var(--font-space-grotesk);
@@ -187,15 +187,15 @@
 }
 
 @utility base-medium {
-    @apply text-[18px] leading-[25.2px] font-medium;
+    @apply text-[16px] xs:text-[18px] leading-[25.2px] font-medium;
 }
 
 @utility base-semibold {
-    @apply text-[18px] leading-[25.2px] font-semibold;
+    @apply text-[16px] xs:text-[18px] leading-[25.2px] font-semibold;
 }
 
 @utility base-bold {
-    @apply text-[18px] leading-[140%] font-bold;
+    @apply text-[16px] xs:text-[18px] leading-[140%] font-bold;
 }
 
 @utility paragraph-regular {

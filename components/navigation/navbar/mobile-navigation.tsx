@@ -31,7 +31,7 @@ const MobileNavigation = async () => {
             </SheetTrigger>
             <SheetContent
                 side="left"
-                className="background-light900_dark200 border-none p-5"
+                className="background-light900_dark200 max-w-[310px] border-none p-6"
             >
                 <SheetTitle className="hidden">Navigation</SheetTitle>
                 <Link href="/" className="flex items-center gap-1">
@@ -47,14 +47,14 @@ const MobileNavigation = async () => {
                     </p>
                 </Link>
 
-                <div className="no-scrollbar flex h-[calc(100vh-80px)] flex-col justify-between overflow-y-auto">
+                <div className="no-scrollbar xs:gap-6 flex h-[calc(100vh-80px)] flex-col justify-between gap-4 overflow-y-auto">
                     <SheetClose asChild>
-                        <section className="flex h-full flex-col gap-6 pt-16">
+                        <section className="xs:pt-16 xs:gap-6 flex h-full flex-col gap-4 pt-4">
                             <NavLinks isMobileNav />
                         </section>
                     </SheetClose>
 
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-4">
                         {userId ? (
                             <SheetClose asChild>
                                 <form

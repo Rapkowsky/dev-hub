@@ -38,7 +38,7 @@ const NavLinks = ({
                             isActive
                                 ? "primary-gradient text-light-900 rounded-lg"
                                 : "text-dark300_light900 hover-text",
-                            "click-anim flex items-center justify-start gap-4 bg-transparent p-4",
+                            "click-anim flex items-center justify-start gap-4 bg-transparent p-3",
                         )}
                     >
                         <Image
