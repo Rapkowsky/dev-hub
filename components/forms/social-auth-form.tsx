@@ -34,8 +34,6 @@ const SocialAuthForm = () => {
                         ? error.message
                         : "An error occured during sign-in",
             });
-        } finally {
-            setLoadingProvider(null);
         }
     };
 
