@@ -1,3 +1,5 @@
+import React from "react";
+
 import QuestionCard from "@/components/cards/question-card";
 import DataRenderer from "@/components/data-render";
 import Pagination from "@/components/pagination";
@@ -5,7 +7,6 @@ import LocalSearch from "@/components/search/local-search";
 import ROUTES from "@/constants/routes";
 import { EMPTY_QUESTION } from "@/constants/states";
 import { getTagQuestions } from "@/lib/actions/tag.action";
-import React from "react";
 
 const Page = async ({ params, searchParams }: RouteParams) => {
     const { id } = await params;
