@@ -37,8 +37,11 @@ const Page = async ({ searchParams }: RouteParams) => {
                         .map((job: Job) => <JobCard key={job.id} job={job} />)
                 ) : (
                     <div className="paragraph-regular text-dark200_light800 w-full text-center">
-                        Oops! We couldn&apos;t find any jobs at the moment.
-                        Please try again later
+                        <p>Module under construction.</p>{" "}
+                        <p className="mt-2">
+                            The Jobs module is currently being built and will be
+                            available soon. Please check back later.
+                        </p>
                     </div>
                 )}
             </section>
