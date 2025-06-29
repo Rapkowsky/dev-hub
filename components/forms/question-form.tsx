@@ -253,7 +253,7 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
                                 <span>Submitting</span>
                             </>
                         ) : (
-                            <>{isEdit ? "Edit" : "Ask a Question"}</>
+                            <>{isEdit ? "Edit" : "Create a Question"}</>
                         )}
                     </Button>
                 </div>
