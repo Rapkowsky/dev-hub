@@ -56,7 +56,7 @@ const ProfilePage = async ({ params, searchParams }: RouteParams) => {
     } = await getUserQuestions({
         userId: id,
         page: Number(page) || 1,
-        pageSize: Number(pageSize) || 10,
+        pageSize: Number(pageSize) || 4,
     });
 
     const {
@@ -66,7 +66,7 @@ const ProfilePage = async ({ params, searchParams }: RouteParams) => {
     } = await getUserAnswers({
         userId: id,
         page: Number(page) || 1,
-        pageSize: Number(pageSize) || 10,
+        pageSize: Number(pageSize) || 4,
     });
 
     const {

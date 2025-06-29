@@ -24,7 +24,7 @@ async function Home({ searchParams }: RouteParams) {
 
     const { success, data, error } = await getQuestions({
         page: Number(page) || 1,
-        pageSize: Number(pageSize) || 10,
+        pageSize: Number(pageSize) || 4,
         query,
         filter,
     });
