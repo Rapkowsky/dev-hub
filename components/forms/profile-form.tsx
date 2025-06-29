@@ -81,7 +81,7 @@ const ProfileForm = ({ user }: Params) => {
                             </FormLabel>
                             <FormControl>
                                 <Input
-                                    className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border"
+                                    className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[50px] border"
                                     placeholder="Your Name"
                                     {...field}
                                 />
@@ -102,7 +102,7 @@ const ProfileForm = ({ user }: Params) => {
                             </FormLabel>
                             <FormControl>
                                 <Input
-                                    className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border"
+                                    className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[50px] border"
                                     placeholder="Your username"
                                     {...field}
                                 />
@@ -123,7 +123,7 @@ const ProfileForm = ({ user }: Params) => {
                             <FormControl>
                                 <Input
                                     type="url"
-                                    className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border"
+                                    className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[50px] border"
                                     placeholder="Your Portfolio link"
                                     {...field}
                                 />
@@ -144,7 +144,7 @@ const ProfileForm = ({ user }: Params) => {
                             </FormLabel>
                             <FormControl>
                                 <Input
-                                    className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border"
+                                    className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[50px] border"
                                     placeholder="Where do you live?"
                                     {...field}
                                 />
@@ -165,7 +165,7 @@ const ProfileForm = ({ user }: Params) => {
                             <FormControl>
                                 <Textarea
                                     rows={5}
-                                    className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border"
+                                    className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[50px] border"
                                     placeholder="What's special about you?"
                                     {...field}
                                 />

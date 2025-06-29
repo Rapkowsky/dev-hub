@@ -73,7 +73,7 @@ const GlobalSearch = () => {
             <div
                 className={cn(
                     "dark:bg-black!",
-                    "background-light800_darkgradient relative flex min-h-[56px] grow items-center gap-1 rounded-xl px-4",
+                    "background-light800_darkgradient relative flex min-h-[50px] grow items-center gap-1 rounded-xl px-4",
                 )}
             >
                 <Image

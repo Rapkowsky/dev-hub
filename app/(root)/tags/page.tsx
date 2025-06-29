@@ -34,7 +34,7 @@ const Tags = async ({ searchParams }: RouteParams) => {
 
                 <CommonFilter
                     filters={TagFilters}
-                    otherClasses="min-h-[56px] sm:min-w-[170px]"
+                    otherClasses="sm:min-w-[170px]"
                 />
             </div>
 

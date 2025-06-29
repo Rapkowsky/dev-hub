@@ -92,7 +92,7 @@ const AnswerCard = ({
                     href={`/questions/${question}#answer-${_id}`}
                     className="body-semibold font-space-grotesk text-primary-500 relative z-10"
                 >
-                    <p className="mt-1">Read more...</p>
+                    <p className="click-anim mt-1">Read more...</p>
                 </Link>
             )}
         </article>

@@ -155,7 +155,7 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
                             </FormLabel>
                             <FormControl>
                                 <Input
-                                    className="paragraph-regular background-light700_dark300 light-border-2 text-dark300_light700 no-focus min-h-[56px] border"
+                                    className="paragraph-regular background-light700_dark300 light-border-2 text-dark300_light700 no-focus min-h-[50px] border"
                                     {...field}
                                 />
                             </FormControl>
@@ -202,7 +202,7 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
                             <FormControl>
                                 <div>
                                     <Input
-                                        className="paragraph-regular background-light700_dark300 light-border-2 text-dark300_light700 no-focus min-h-[56px] border"
+                                        className="paragraph-regular background-light700_dark300 light-border-2 text-dark300_light700 no-focus min-h-[50px] border"
                                         placeholder="Add tags..."
                                         onKeyDown={(e) =>
                                             handleInputKeyDown(e, field)
