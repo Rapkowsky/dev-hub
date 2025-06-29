@@ -319,7 +319,7 @@
 }
 
 @utility btn-secondary {
-    @apply bg-light-800! dark:bg-dark-400!;
+    @apply bg-light-800! dark:bg-dark-400! hover:dark:bg-[#212734e3]!;
 }
 
 @utility btn-tertiary {

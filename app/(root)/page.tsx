@@ -56,7 +56,7 @@ async function Home({ searchParams }: RouteParams) {
 
                 <CommonFilter
                     filters={HomePageFilters}
-                    otherClasses="sm:min-w-[170px] "
+                    otherClasses="sm:min-w-[170px] sm:min-h-[50px]"
                     containerClasses="md:hidden max-md:flex"
                 />
             </section>

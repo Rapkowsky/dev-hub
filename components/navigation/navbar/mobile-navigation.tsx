@@ -26,7 +26,7 @@ const MobileNavigation = async () => {
                     width={36}
                     height={36}
                     alt="Menu"
-                    className="invert-colors sm:hidden"
+                    className="invert-colors click-anim sm:hidden"
                 />
             </SheetTrigger>
             <SheetContent
