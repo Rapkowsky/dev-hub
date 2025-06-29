@@ -91,7 +91,7 @@ const EditDeleteAction = ({ type, itemId }: Props) => {
                             className="!border-primary-100 !bg-primary-500 !text-light-800"
                             onClick={handleDelete}
                         >
-                            Continue
+                           Delete
                         </AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>
