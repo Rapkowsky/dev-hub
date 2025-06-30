@@ -35,7 +35,7 @@ const Community = async ({ searchParams }: RouteParams) => {
 
                 <CommonFilter
                     filters={UserFilters}
-                    otherClasses="sm:min-w-[170px]"
+                    otherClasses="sm:min-w-[170px] sm:min-h-[50px]"
                 />
             </div>
 
