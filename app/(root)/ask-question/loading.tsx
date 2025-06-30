@@ -8,19 +8,19 @@ const Loading = () => {
             </h1>
             <div className="mb-[36px]">
                 <Skeleton className="mb-[12px] h-6 w-[90px]" />
-                <Skeleton className="h-[50px] w-full" />
+                <Skeleton className="mt-5 h-[50px] w-full" />
                 <Skeleton className="mb-[12px] h-6 w-full max-w-[450px]" />
             </div>
 
             <div className="mb-[36px]">
                 <Skeleton className="mb-[12px] h-6 w-full max-w-[300px]" />
-                <Skeleton className="h-[390px] w-full" />
+                <Skeleton className="mt-5 h-[390px] w-full" />
                 <Skeleton className="mb-[12px] h-6 w-full max-w-[450px]" />
             </div>
 
             <div className="mb-[36px]">
                 <Skeleton className="mb-[12px] h-6 w-[90px]" />
-                <Skeleton className="h-[50px] w-full" />
+                <Skeleton className="mt-5 h-[50px] w-full" />
                 <Skeleton className="mb-[12px] h-6 w-full max-w-[600px]" />
             </div>
             <Skeleton className="mt-[60px] ml-auto h-[36px] w-[150px]" />
