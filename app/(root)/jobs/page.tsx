@@ -36,7 +36,7 @@ const Page = async ({ searchParams }: RouteParams) => {
                         ?.filter((job: Job) => job.job_title)
                         .map((job: Job) => <JobCard key={job.id} job={job} />)
                 ) : (
-                    <div className="paragraph-regular text-dark200_light800 w-full text-center">
+                    <div className="paragraph-regular text-dark200_light800 w-full">
                         <p>Module under construction.</p>{" "}
                         <p className="mt-2">
                             The Jobs module is currently being built and will be
