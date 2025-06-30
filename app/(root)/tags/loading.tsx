@@ -18,6 +18,11 @@ const Loading = () => {
                     />
                 ))}
             </div>
+
+            <div className="mt-5 flex justify-center gap-2">
+                <Skeleton className="h-9 w-9" />
+                <Skeleton className="h-9 w-[65px]" />
+            </div>
         </section>
     );
 };
