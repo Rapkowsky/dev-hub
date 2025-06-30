@@ -4,7 +4,7 @@ const Loading = () => {
     return (
         <section>
             <h1 className="h1-bold text-dark100_light900 mb-10">
-                Ask a question
+                Edit Profile
             </h1>
 
             {[1, 2, 3, 4].map((item) => (
