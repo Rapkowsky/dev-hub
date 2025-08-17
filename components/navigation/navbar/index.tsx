@@ -22,11 +22,11 @@ const Navbar = async () => {
                     src="/images/site-logo.svg"
                     width={30}
                     height={30}
-                    alt="Dev Overflow Logo"
+                    alt="Dev Hub Logo"
                 />
 
                 <p className="h2-bold font-space-grotesk text-dark-100 dark:text-light-900 max-sm:hidden">
-                    Dev<span className="text-primary-500">Overflow</span>
+                    Dev<span className="text-primary-500">Hub</span>
                 </p>
             </Link>
 
